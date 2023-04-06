@@ -39,15 +39,14 @@ app.post("/tweets", (req, res) => {
 })
 
 app.get("/tweets", (req, res) => {
-    res.send(tweets)
-})
-
-function achar(nome){
-    for (let i=0; i<usuarios.length;i++){
-        if(usuarios[i].username === nome){
-            return usuarios[i].avatar
+    if (tweets.length > 10){
+        let array =[]
+        for(let i=1; i<11;i++){
+            array.push(tweets[tweets.length-i])
         }
+        res.send(array)
+    } else{
+        res.send(tweets)
     }
-}
-
+})
 app.listen(5000, () => console.log("terminal rodando na porta 5000"))
